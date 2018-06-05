@@ -33,9 +33,8 @@ int pot4 = A2; // wrist potentiometer
 int pot5 = A3; // gripper potentiometer
 int WristArray[140],ElbowArray[140],GripperArray[140],ShoulderArray[140],ShoulderRotArray[140]; // arrays for each joint
 
-volatile boolean REDstate=false; 
+
 volatile boolean REDmode=false;
-volatile boolean GREENstate=false;
 volatile boolean GREENmode=false;
 
 int vals[4]; // array that temporary stores values for each joint ( total of 5 joints)
@@ -196,11 +195,11 @@ static unsigned long last_interrupt_time = 0;
  if (interrupt_time - last_interrupt_time > 250) 
  {
 
- if(GREENstate){
-  GREENstate=false;
+ if(GREENmode){
+  
   GREENmode=false;
 }else{
-  GREENstate=true;
+  
   GREENmode=true;
 }
  }
@@ -215,11 +214,11 @@ void REDpress()
  // If interrupts come faster than 250ms, assume it's a bounce and ignore
  if (interrupt_time - last_interrupt_time > 250) 
  {
- if(REDstate){
-  REDstate=false;
+ if(REDmode){
+  R
   REDmode=false;
 }else{
-  REDstate=true;
+
   REDmode=true;
 }
  }
